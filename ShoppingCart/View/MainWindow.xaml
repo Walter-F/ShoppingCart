@@ -1,0 +1,128 @@
+﻿<Window
+    x:Class="ShoppingCart.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:anotherNamespace="clr-namespace:ShoppingCart.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ShoppingCart"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ShoppingCart"
+    Width="938"
+    Height="450"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid>
+        <!-- Адаптивность
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        -->
+
+        <StackPanel Margin="66,19,656,36">
+            <StackPanel Orientation="Horizontal">
+                <Label HorizontalAlignment="Left" Content="Товары" />
+                <Button
+                    x:Name="ViewProducts"
+                    Width="30"
+                    Background="Blue"
+                    Click="ViewProducts_Click" />
+            </StackPanel>
+
+            <DataGrid
+                Name="dtGridProducts"
+                Margin="0,20,0,0"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding ProductsTable}"
+                SelectedItem="{Binding SelectedItem}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=Name}" Header="Название" />
+                    <DataGridTextColumn Binding="{Binding Path=Price}" Header="Цена" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button
+                x:Name="AddToCartButton"
+                Margin="0,10,0,0"
+                Background="Green"
+                Command="{Binding addToCart}"
+                Content="Добавить в корзину"
+                Cursor="Hand" />
+        </StackPanel>
+
+
+
+
+        <StackPanel Margin="357,21,357,21">
+            <StackPanel Orientation="Horizontal">
+                <Label HorizontalAlignment="Left" Content="Покупка" />
+            </StackPanel>
+
+            <DatePicker Margin="0,20,0,0" SelectedDate="{Binding DateTime}" />
+
+            <StackPanel
+                x:Name="PurchasesStackPanel"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                Orientation="Vertical">
+
+                <Button
+                    x:Name="ViewPurchases"
+                    Width="150"
+                    Height="20"
+                    Background="Green"
+                    Click="ViewPurchases_Click"
+                    Content="Просмотреть корзину" />
+                <Button
+                    Width="150"
+                    Height="20"
+                    Margin="0,10,0,0"
+                    Background="Green"
+                    Command="{Binding clearCart}"
+                    Content="Сбросить" />
+                <Button
+                    Width="150"
+                    Height="20"
+                    Margin="0,10,0,0"
+                    Background="Green"
+                    Command="{Binding saveToHistory}"
+                    Content="Сохранить" />
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Margin="630,19,32,36">
+            <StackPanel Orientation="Horizontal">
+                <Label HorizontalAlignment="Left" Content="История" />
+            </StackPanel>
+
+            <DataGrid
+                Name="dtGridHistory"
+                Margin="0,20,0,0"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding HistoryTable}">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="65"
+                        Binding="{Binding Path=Date}"
+                        Header="Дата" />
+                    <DataGridTextColumn Binding="{Binding Path=Purchases}" Header="Покупки" />
+                    <DataGridTextColumn Binding="{Binding Path=TotalPrice}" Header="Общая сумма" />
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+            <Button
+                Width="202"
+                Margin="0,20,0,0"
+                Background="Green"
+                Command="{Binding clearHistory}"
+                Content="Новая" />
+        </StackPanel>
+    </Grid>
+</Window>
