@@ -2,6 +2,7 @@
 using ShoppingCart.Model;
 using ShoppingCart.View;
 using ShoppingCart.ViewModel;
+using System;
 using System.Diagnostics;
 using System.Management.Instrumentation;
 using System.Windows;
@@ -22,14 +23,27 @@ namespace ShoppingCart
 
         private void ViewPurchases_Click(object sender, RoutedEventArgs e)
         {
-            PurchasesView purchasesView = new PurchasesView();
-            purchasesView.Show();
+            try
+            {
+                PurchasesView purchasesView = new PurchasesView();
+                purchasesView.Show();
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ViewProducts_Click(object sender, RoutedEventArgs e)
         {
-            ProductsView productsVieww = new ProductsView();
-            productsVieww.Show();   
+            try
+            {
+                ProductsView productsVieww = new ProductsView();
+                productsVieww.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
