@@ -31,15 +31,5 @@ namespace ShoppingCart.Model
         {
             return connection;
         }
-
-        public void addProduct(Product product)
-        {
-            // Добавление продукта в базу данных
-        }
-
-        public void addHistoryElement(Purchase purchase)
-        {
-            // Добавление покупки в историю в базе данных
-        }
     }
 }
